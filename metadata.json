@@ -1,0 +1,8 @@
+{
+  "name": "Tixo Social",
+  "description": "A premium, mobile-first social media experience featuring posts, reels, and AI-powered messaging.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

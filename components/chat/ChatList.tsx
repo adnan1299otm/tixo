@@ -1,12 +1,11 @@
-
 import React from 'react';
 import { CHATS } from '../../constants';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Search, PenSquare, Bot, Check, CheckCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function ChatList() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-white relative">
@@ -34,7 +33,7 @@ export default function ChatList() {
           <motion.div 
             key={chat.id}
             whileTap={{ backgroundColor: "rgba(0,0,0,0.05)" }}
-            onClick={() => navigate(`/messages/${chat.id}`)}
+            onClick={() => router.push(`/messages/${chat.id}`)}
             className="flex items-center gap-3 px-3 py-2 cursor-pointer group"
           >
             <div className="relative shrink-0">

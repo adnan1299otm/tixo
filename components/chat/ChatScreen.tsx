@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Chat, Message } from '../../types';
 import { MOCK_MESSAGES, CURRENT_USER } from '../../constants';
 import MessageBubble from './bubbles/MessageBubble';
 import { ArrowLeft, Phone, Video, MoreVertical, Paperclip, Mic, Send, Smile, X, Bot, Reply, AlertTriangle } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SafetyService } from '../../services/SafetyService';
 
@@ -13,7 +12,7 @@ interface ChatScreenProps {
 }
 
 export default function ChatScreen({ chat }: ChatScreenProps) {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [messages, setMessages] = useState<Message[]>(MOCK_MESSAGES[chat.id] || []);
   const [inputText, setInputText] = useState('');
   const [replyingTo, setReplyingTo] = useState<Message | null>(null);
@@ -89,7 +88,7 @@ export default function ChatScreen({ chat }: ChatScreenProps) {
 
       <div className="z-30 bg-white/80 backdrop-blur-md shadow-sm px-3 py-2 flex items-center justify-between sticky top-0">
         <div className="flex items-center gap-1 flex-1 overflow-hidden">
-          <button onClick={() => navigate('/messages')} className="p-2 -ml-1 hover:bg-gray-100 rounded-full transition-colors text-gray-600">
+          <button onClick={() => router.back()} className="p-2 -ml-1 hover:bg-gray-100 rounded-full transition-colors text-gray-600">
             <ArrowLeft size={22} />
           </button>
           <div className="flex items-center gap-3 ml-1 flex-1 overflow-hidden cursor-pointer">

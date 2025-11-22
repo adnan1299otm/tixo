@@ -1,17 +1,19 @@
 
+"use client";
+
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import EditProfileForm from '../components/profile/EditProfileForm';
 
 export default function EditProfile() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="min-h-screen bg-white pb-20">
       {/* Mobile Header */}
       <div className="sticky top-0 bg-white z-20 px-4 py-3 border-b border-gray-100 flex items-center gap-4 md:hidden">
-        <button onClick={() => navigate(-1)} className="text-gray-900">
+        <button onClick={() => router.back()} className="text-gray-900">
           <ArrowLeft size={24} />
         </button>
         <h1 className="text-lg font-bold">Edit Profile</h1>

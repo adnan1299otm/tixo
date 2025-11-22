@@ -1,10 +1,12 @@
+
+"use client";
 import React, { useState } from 'react';
 import { STORIES, POSTS } from '../constants';
 import { Avatar, UserIdentity } from '../components/UIComponents';
 import { Heart, MessageCircle, Share2, Repeat, MoreHorizontal, Bell, Search, X } from 'lucide-react';
 import { TopHeader } from '../components/Navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const StoryBubble: React.FC<{ story: typeof STORIES[0] }> = ({ story }) => (
   <div className="flex flex-col items-center space-y-1 min-w-[72px]">
@@ -78,7 +80,7 @@ const PostCard: React.FC<{ post: typeof POSTS[0] }> = ({ post }) => {
 };
 
 const Home = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -99,7 +101,7 @@ const Home = () => {
               {isSearchOpen ? <X size={20} /> : <Search size={20} strokeWidth={2.5} />}
             </button>
             <button 
-              onClick={() => navigate('/notifications')} 
+              onClick={() => router.push('/notifications')} 
               className="relative p-2 bg-white rounded-full shadow-sm text-gray-600 hover:bg-gray-50 transition-colors"
             >
               <Bell size={20} />

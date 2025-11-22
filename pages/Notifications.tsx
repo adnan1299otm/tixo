@@ -1,10 +1,11 @@
 
+"use client";
 import React from 'react';
 import { NOTIFICATIONS } from '../constants';
 import { Avatar } from '../components/UIComponents';
 import { TopHeader } from '../components/Navigation';
 import { Heart, MessageCircle, UserPlus, Info, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const getIcon = (type: string) => {
   switch(type) {
@@ -16,7 +17,7 @@ const getIcon = (type: string) => {
 };
 
 export default function Notifications() {
-  const navigate = useNavigate();
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-white pb-20">
        <TopHeader 
@@ -25,7 +26,7 @@ export default function Notifications() {
         logo={false}
       />
        <button 
-         onClick={() => navigate(-1)} 
+         onClick={() => router.back()} 
          className="absolute top-3 left-4 z-50 p-1 bg-gray-100 rounded-full md:hidden"
        >
          <ArrowLeft size={20} />

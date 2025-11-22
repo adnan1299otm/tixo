@@ -1,14 +1,15 @@
 
+"use client";
 import React, { useState } from 'react';
 import { Avatar, GradientButton } from '../components/UIComponents';
 import { CURRENT_USER } from '../constants';
 import { Image as ImageIcon, Video, Globe, X, AlertTriangle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SafetyService } from '../services/SafetyService';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 export default function Create() {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<'post' | 'reel'>('post');
   const [privacy, setPrivacy] = useState('Everyone');
   const [text, setText] = useState('');
@@ -24,7 +25,7 @@ export default function Create() {
     alert('Safe content published successfully! ✅');
     setText('');
     setError(null);
-    navigate('/');
+    router.push('/');
   };
 
   return (
@@ -46,7 +47,7 @@ export default function Create() {
 
       <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-gray-100">
          <div className="flex justify-between items-center px-4 py-3">
-           <button onClick={() => navigate(-1)} className="text-gray-500"><X size={24} /></button>
+           <button onClick={() => router.back()} className="text-gray-500"><X size={24} /></button>
            <div className="flex bg-gray-100 p-1 rounded-lg">
              <button 
                onClick={() => setActiveTab('post')}
@@ -104,8 +105,10 @@ export default function Create() {
           <GradientButton 
             fullWidth 
             onClick={handlePost}
-            children={activeTab === 'post' ? 'Post Now' : 'Share Reel'}
-          />
+            className="flex items-center justify-center"
+          >
+             {activeTab === 'post' ? 'Post Now' : 'Share Reel'}
+          </GradientButton>
         </div>
       </div>
     </div>
